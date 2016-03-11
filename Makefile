@@ -1,10 +1,10 @@
 
 CXX			= g++
-CFLAGS		= -Wall
+CFLAGS			= -Wall
 STD			= -std=c++11
 INC			= -I/usr/include/qt4 -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui
 LIB			= -lQtCore -lQtGui
-LINK		= g++
+LINK			= g++
 RM			= rm
 ###### Files
 SOURCES		= main.cpp
