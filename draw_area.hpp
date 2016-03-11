@@ -1,10 +1,6 @@
 #pragma once
 
 #include <QtGui/QtGui>
-#include <QColor>
-#include <QImage>
-#include <QPoint>
-#include <QWidget>
 
 class draw_area : public QWidget
 {
