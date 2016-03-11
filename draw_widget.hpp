@@ -8,10 +8,10 @@ class draw_widget : public QWidget
 {
  
 private :
-
 	draw_area * m_draw_area ;
 	QVBoxLayout * m_layout ;
-public:
+	
+public :
 
     draw_widget()
     /**
