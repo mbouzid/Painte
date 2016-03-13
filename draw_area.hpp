@@ -10,9 +10,9 @@ class draw_area : public QWidget
 	private :
 
 	bool m_drawing ;
-    QImage m_image;
-    QPoint m_last;
-    QPen m_pen ;
+    	QImage m_image;
+    	QPoint m_last;
+    	QPen m_pen ;
 
 	public :
 
