@@ -26,17 +26,16 @@ class draw_area : public QWidget
 		emit is_used(false);
 	}
 	
-    void draw(const QPoint & end )
-    /**
-    *	Draw a line to the end point.
-    *	@method @access public
-    *	@param {const QPoint & } end
-    **/
+	void draw(const QPoint & end )
+	/**
+	*	Draw a line to the end point.
+	*	@method @access public
+	*	@param {const QPoint & } end
+	**/
 	{
 		QPainter painter(&m_image);
 		painter.setPen(m_pen);
 		painter.drawLine(m_last,end);
-		
 		update(QRect(m_last,end));
 		m_last = end ;
 	}
@@ -55,13 +54,13 @@ class draw_area : public QWidget
 		painter.drawImage(QPoint(0, 0),back_buffer);	// the painter draws the back_buffer starting at (0,0) in the dest buffer
 	}
 	
-    void resize(QImage * image , const QSize & sz)
-    /**	
-    *	Resize an image.
-    *	@method @access public
-    *	@param {QImage *} image
-    *	@param {const QSize &} sz
-    **/
+	void resize(QImage * image , const QSize & sz)
+	/**	
+	*	Resize an image.
+	*	@method @access public
+	*	@param {QImage *} image
+	*	@param {const QSize &} sz
+	**/
    	{
 		QImage new_image(sz, QImage::Format_RGB32);	// create a new image with the new size
 		blit(new_image,*image);	
@@ -70,73 +69,74 @@ class draw_area : public QWidget
 
     
 
-    void mousePressEvent(QMouseEvent *event)
-    /**
-    *	Called when the mouse is pressed
-    *	@param {QMouseEvent *} event
-    **/
-    {
-    	
+	void mousePressEvent(QMouseEvent *event)
+	/**
+	*	Called when the mouse is pressed
+	*	@param {QMouseEvent *} event
+	**/
+	{
 		if (event->button() == Qt::LeftButton) 
 		{
 			emit is_used(true);
-		    m_last = event->pos();
-		    m_drawing = true ;
+			m_last = event->pos();
+			m_drawing = true ;
 		}
-    }
-    void mouseMoveEvent(QMouseEvent *event) 
-    /**
-    *	Called when the mouse is moving
-    *	@param {QMouseEvent *} event
-    **/
-    {
+	}
+    
+	void mouseMoveEvent(QMouseEvent *event) 
+	/**
+	*	Called when the mouse is moving
+	*	@param {QMouseEvent *} event
+	**/
+	{
 		if ((event->buttons() & Qt::LeftButton) && m_drawing )
 		{
 			draw(event->pos());
 		}
 	}
 
-    void mouseReleaseEvent(QMouseEvent *event)
-    /**
-    *	Called when the mouse is released
-    *	@method @access public
-    *	@param {QMouseEvent*} event
-    **/
-    {
+	void mouseReleaseEvent(QMouseEvent *event)
+	/**
+	*	Called when the mouse is released
+	*	@method @access public
+	*	@param {QMouseEvent*} event
+	**/
+	{
 		if (event->button() == Qt::LeftButton && m_drawing )
 		{
-		    draw(event->pos());
-		    m_drawing = false ;
-    	}
+			draw(event->pos());
+			m_drawing = false ;
+		}
 	}
 	
-    void paintEvent(QPaintEvent *event)
-    /**
-    *	Set a painter for this
-    *	@method @access public
-    *	@param {QPaintEvent *} event
-    **/
- 	{
+	void paintEvent(QPaintEvent *event)
+	/**
+	*	Set a painter for this
+	*	@method @access public
+	*	@param {QPaintEvent *} event
+	 **/
+	{
 		QPainter painter(this);	//set a painter that will paint this widget
 		QRect region = event->rect();	// this is the region where we will draw
 		painter.setPen(m_pen); // set a pen for the painter
 		painter.drawImage(region, m_image,region); // draw the rect region of m_image into the target region in the paint device.
 	}
 	
-    void resizeEvent(QResizeEvent *event)
-    /**
-    *	Called when the widget is resized
-    *	@method @access public
-    *	@param {QResizeEvent *} event
-    **/
+	void resizeEvent(QResizeEvent *event)
+	/**
+	*	Called when the widget is resized
+	*	@method @access public
+	*	@param {QResizeEvent *} event
+	**/
 	{
 		QSize sz(event->size());
 		resize(&m_image,QSize(sz.width(),sz.height()));
-        update();
+		update();
 		QWidget::resizeEvent(event);
-   }
+	}
 
 	public slots :
+	
 	void toss()
 	{
 		m_image.fill(Qt::white);
@@ -146,7 +146,7 @@ class draw_area : public QWidget
 	}
 	
 	signals :
-		
-		void is_used( bool );
+	
+	void is_used( bool );
 	
 };
